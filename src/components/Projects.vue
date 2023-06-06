@@ -57,14 +57,14 @@ export default {
 <template>
   <div class="container">
     <div class="projects">
-      <p v-if="isLoading">Loading...</p>
       <h2 class="projects__header text-center">Case Study:</h2>
+      <p v-if="isLoading">Loading...</p>
       <ul class="project-list">
         <li class="project" v-for="p in post" :key="p.id">
           <a class="project__link" target="_blank" :href="p.acf.project_url">
 
             <h3 class="project__title">{{ p.title.rendered }}</h3>
-
+            <p class="project__tech">{{ p.acf.tech_stack }}</p>
             <img  class="img-resp" :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
           </a>
 
@@ -109,6 +109,9 @@ export default {
 }
 .project__title{
   font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.project__tech{
   margin-bottom: 1rem;
 }
 .project__link{
