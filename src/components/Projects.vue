@@ -63,15 +63,18 @@ export default {
         <li class="project" v-for="p in post" :key="p.id">
           <a class="project__link" target="_blank" :href="p.acf.project_url">
 
-            <h3 class="project__title">{{ p.title.rendered }}</h3>
-            <p class="project__tech">{{ p.acf.tech_stack }}</p>
-            <img  class="img-resp" :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
+            <!-- <h3 class="project__title">{{ p.title.rendered }}</h3> -->
+            <div class="project__image">
+              <div class="project__hover">
+                <img src="./../assets/external_link.svg" alt="link icon" class="project__external-link"/>
+                <p class="project__external-url">{{ p.title.rendered }}</p>
+                <p class="project__tech">{{ p.acf.tech_stack }}</p>
+              </div>
+              <img  class="img-resp" :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
+
+            </div>
           </a>
 
-
-          <!-- <div v-html="p.content.rendered"></div> -->
-
-          <p class="date">{{ p.createdAt }}</p>
         </li>
 
       </ul>
@@ -106,13 +109,18 @@ export default {
   margin-right: 15px;
   margin-left: 15px;
   cursor: pointer;
+  box-shadow: rgba(217,217,226,.4);
+
 }
 .project__title{
   font-size: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }
 .project__tech{
   margin-bottom: 1rem;
+  color: #fff;
+  /* position: absolute; */
+  /* bottom: 1rem; */
 }
 .project__link{
   text-decoration: none;
@@ -120,6 +128,62 @@ export default {
 }
 .project__thumbnail{
   width: 100%;
+
+}
+.project__image{
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.project__hover{
+  position: absolute;
+  z-index: 1;
+  top: 60%;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all .35s;
+
+  opacity: 0;
+
+}
+.project__external-link{
+  width: 24px;
+  height: 24px;
+
+}
+.project__external-url{
+  color: #fff;
+  /* font-weight: bold; */
+  font-size: 2rem;
+}
+.project__image::after{
+  transition: all .35s;
+
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  /* background-color: 83ecec */
+  background: linear-gradient(-0.25turn, #83ecec, #fab1a0);
+
+}
+.project__image:hover::after{
+  opacity: .85;
+
+}
+.project__image:hover .project__hover{
+  opacity: 1;
+  top: 50%;
+
+
+
 }
 @media (min-width: 1024px) {
 .project-list {
