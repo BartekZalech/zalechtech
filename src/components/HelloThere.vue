@@ -8,7 +8,7 @@ export default {
 
       title: 'Front-end',
 
-      experience: ['Frontend', 'Wordpress', 'Vue.js', 'Grav', 'Web'],
+      experience: ['Full stack','Next.js', 'Wordpress', 'Vue.js', 'Grav', 'Web'],
       linkedin: 'https://www.linkedin.com/in/bartlomiej-zalech/',
       github: 'https://github.com/BartekZalech',
     };

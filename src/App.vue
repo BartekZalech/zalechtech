@@ -5,6 +5,7 @@ import Projects from './components/Projects.vue'
 import Footer from './components/Footer.vue'
 import Companies from './components/Companies.vue'
 import Cta from './components/Cta.vue'
+import TechStack from './components/TechStack.vue'
 
 // import TheWelcome from './components/TheWelcome.vue'
 
@@ -36,8 +37,11 @@ import Cta from './components/Cta.vue'
     </svg>
     <HelloThere />
     <Projects />
+    <TechStack />
     <Companies />
+
     <Cta />
+
     <Footer />
     <!-- <TheWelcome /> -->
   </main>

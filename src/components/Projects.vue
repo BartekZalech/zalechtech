@@ -20,7 +20,7 @@ export default {
           this.post = data;
           this.isLoading = false;
           this.fetchFeaturedMedia();
-          console.log(data);
+          // console.log(data);
 
         });
     },
@@ -57,7 +57,7 @@ export default {
 <template>
   <div class="container">
     <div class="projects">
-      <h2 class="projects__header text-center">Case Study:</h2>
+      <h2 class="projects__header text-center">Realizacje:</h2>
       <p v-if="isLoading">Loading...</p>
       <ul class="project-list">
         <li class="project" v-for="p in post" :key="p.id">
@@ -70,7 +70,7 @@ export default {
                 <p class="project__external-url">{{ p.title.rendered }}</p>
                 <p class="project__tech">{{ p.acf.tech_stack }}</p>
               </div>
-              <img  class="img-resp" :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
+              <img  class="img-resp " :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
 
             </div>
           </a>
@@ -87,7 +87,7 @@ export default {
 .projects {
   max-width: 1380px;
   margin-top: 50px;
-  margin-bottom: 120px;
+  margin-bottom: 2rem;
 }
 .projects__header{
   font-size: 3rem;
