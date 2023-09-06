@@ -23,18 +23,24 @@ export default {
   <div class="container">
     <div class="about-me">
 
-    <img src="./../assets/me.jpg" alt="" class="round image-avatar">
     <article class="short-about">
-      <VueWriter :typeSpeed="100" :caret="cursor" :eraseSpeed="50" :delay="600" :array="experience" />
-      <h1>developer</h1>
-      <p>Witam na mojej stronie.</p>
-      <p>Potrzebujesz WWW na najwyższym poziomie?</p>
-      <p>Zjedź na dół i zobacz co mogę dla Ciebie zrobić!</p>
+
+      <h2 class="short-about__text">Tworzę nowoczesne<br>
+      <span class="text-stroke">strony internetowe</span><br>
+      które wzniosą Twój<br>
+      <span class="text-stroke">biznes na wyższy poziom</span></h2>
+      <div class="socials">
+        <a class="socials__links" target="_blank" :href="github"> <img src="./../assets/github.svg" alt="github" class=""/></a>
+        <a class="socials__links" target="_blank" :href="linkedin"> <img src="./../assets/linkedin.svg" alt="linkedin" class=""/></a>
+      </div>
     </article>
-    <div class="socials">
-      <a class="socials__links" target="_blank" :href="github"> <img src="./../assets/github.svg" alt="github" class=""/></a>
-      <a class="socials__links" target="_blank" :href="linkedin"> <img src="./../assets/linkedin.svg" alt="linkedin" class=""/></a>
+    <div class="avatar-warpper">
+      <img src="./../assets/me.jpg" alt="" class="round image-avatar">
+      <VueWriter :typeSpeed="100" :caret="cursor" :eraseSpeed="50" :delay="600" :array="experience" />
+
+      <h1>Developer</h1>
     </div>
+
   </div>
 
   </div>
@@ -56,17 +62,24 @@ body {
   flex-direction: column;
   justify-self: center;
   align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 .about-me{
-  min-height: 80vh;
+  min-height: 74vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 1000px;
+
 }
 .about-me .socials{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   margin: 1.5rem auto;
 
 }
@@ -81,6 +94,11 @@ body {
 }
 
 
+.avatar-warpper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 h1.light-big {
   font-size: 2em;
@@ -90,14 +108,45 @@ h1.light-big {
 img.round {
   border-radius: 50%;
 }
+.image-avatar{
+  margin-bottom: .5rem;
+  /* flex-basis: 50%; */
+}
 .short-about{
-  text-align: center;
+  /* text-align: center; */
+  /* flex-basis: 50%; */
+  width: 100%;
+}
+.short-about .short-about__text{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.4rem;
 
 }
 .short-about .is-typed{
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
+.is-typed .typed{
+  /* background: linear-gradient(-0.25turn, #83ecec, #fab1a0);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  -webkit-text-stroke: 8px transparent; */
+  font-size: 2.4rem;
+  /* font-weight: bold; */
+}
+.text-stroke{
+  -webkit-text-stroke: 1px #000;
+  color: transparent;
+  background-clip: text;
 
+}
+/* .short-about .is-typed .typed::after{
+  content: ".";
+} */
 .short-about__title .typed-cursor {
   color: #fab1a0;
 }
@@ -139,12 +188,13 @@ a.custom-link:hover:after {
 }
 
 
-.image-avatar{
-  margin-bottom: .5rem;
-}
+
 
 @media only screen and (min-width: 768px) {
   h1.light-big {
     font-size: 3em;
+  }
+  .about-me{
+    flex-direction: row;
   }
 }</style>

@@ -36,8 +36,8 @@ import TechStack from './components/TechStack.vue'
       </defs>
     </svg>
     <HelloThere />
-    <Projects />
     <TechStack />
+    <Projects />
     <Companies />
 
     <Cta />
@@ -48,6 +48,8 @@ import TechStack from './components/TechStack.vue'
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
 header {
   line-height: 1.5;
 }
