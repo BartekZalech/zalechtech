@@ -1,28 +1,36 @@
 <script>
-
-
 export default {
-
   data() {
     return {
       post: [],
       isLoading: false,
-
     };
   },
   methods: {
-    getPosts() {
+    async getPosts() {
       this.isLoading = true;
-      // fetch('https://panel.zalechtech.pl/wp-json/wp/v2/posts') //blog posts
-      fetch('https://panel.zalechtech.pl/wp-json/wp/v2/project')
-        .then((response) => response.json())
-        .then((data) => {
+
+      // Check if data is in localStorage
+      const cachedPosts = localStorage.getItem('posts');
+      if (cachedPosts) {
+        this.post = JSON.parse(cachedPosts);
+        this.isLoading = false;
+        this.fetchFeaturedMedia();
+      } else {
+        try {
+          const response = await fetch('https://panel.zalechtech.pl/wp-json/wp/v2/project');
+          const data = await response.json();
           this.post = data;
+
+          // Save data to localStorage
+          localStorage.setItem('posts', JSON.stringify(data));
           this.isLoading = false;
           this.fetchFeaturedMedia();
-          // console.log(data);
-
-        });
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+          this.isLoading = false;
+        }
+      }
     },
     async fetchFeaturedMedia() {
       try {
@@ -35,8 +43,11 @@ export default {
             post.featuredMedia = null;
           }
         }
+
+        // Update cached posts with media data
+        localStorage.setItem('posts', JSON.stringify(this.post));
       } catch (error) {
-        console.error(error);
+        console.error('Error fetching featured media:', error);
       }
     },
     getFeaturedMediaUrl(post) {
@@ -47,7 +58,6 @@ export default {
       }
     }
   },
-
   mounted() {
     this.getPosts();
   },
@@ -62,23 +72,17 @@ export default {
       <ul class="project-list">
         <li class="project" v-for="p in post" :key="p.id">
           <a class="project__link" target="_blank" :href="p.acf.project_url">
-
-            <!-- <h3 class="project__title">{{ p.title.rendered }}</h3> -->
             <div class="project__image">
               <div class="project__hover">
                 <img src="./../assets/external_link.svg" alt="link icon" class="project__external-link"/>
                 <p class="project__external-url">{{ p.title.rendered }}</p>
                 <p class="project__tech">{{ p.acf.tech_stack }}</p>
               </div>
-              <img  class="img-resp " :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
-
+              <img class="img-resp" :src="getFeaturedMediaUrl(p)" alt="{{ p.title.rendered }}">
             </div>
           </a>
-
         </li>
-
       </ul>
-
     </div>
   </div>
 </template>

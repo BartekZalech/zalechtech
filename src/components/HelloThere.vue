@@ -66,7 +66,7 @@ body {
   margin-right: 30px;
 }
 .about-me{
-  min-height: 74vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
